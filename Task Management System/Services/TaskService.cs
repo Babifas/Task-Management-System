@@ -12,10 +12,12 @@ namespace Task_Management_System.Services
         {
             _dbConnection = new MySqlConnection(configuration["ConnectionStrings:DefaultConnection"]);
         }
+        //get all tasks
        public List<UserTask> GetAllTasks()
         {
             return _dbConnection.Query<UserTask>("SELECT * FROM TASKS").ToList();
         }
+        //add new task
         public void AddTask(UserTask task)
         {
             _dbConnection.Execute("INSERT INTO TASKS VALUES(@taskId,@title,@status)", task);
